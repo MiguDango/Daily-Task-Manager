@@ -1,0 +1,74 @@
+
+DAILY TASK MANAGER – PSEUDOCODE
+
+START
+
+    LOAD tasks from tasks.json
+
+    IF file is missing or unreadable
+        USE an empty task list
+    END IF
+
+    REPEAT
+
+        DISPLAY menu:
+            1. Add Task
+            2. View Tasks
+            3. Complete Task
+            4. Delete Task
+            5. Exit
+
+        INPUT menu choice
+
+        IF choice is 1
+            INPUT title, description, and due date
+
+            CHECK if title is empty
+            CHECK due date format if provided
+
+            IF details are valid
+                CREATE task with Pending status
+                ADD task to list
+                SAVE tasks
+            ELSE
+                DISPLAY error message
+            END IF
+
+        ELSE IF choice is 2
+            IF task list is empty
+                DISPLAY no tasks message
+            ELSE
+                DISPLAY all tasks and their status
+            END IF
+
+        ELSE IF choice is 3 OR choice is 4
+
+            CHECK if task list is empty
+            INPUT task number
+
+            VALIDATE task number
+
+            IF number is valid
+                IF choice is 3
+                    MARK selected task as completed
+                ELSE
+                    DELETE selected task
+                END IF
+
+                SAVE tasks
+            ELSE
+                DISPLAY error message
+            END IF
+
+        ELSE IF choice is 5
+            SAVE tasks
+            DISPLAY goodbye message
+            EXIT LOOP
+
+        ELSE
+            DISPLAY invalid choice message
+        END IF
+
+    UNTIL user exits
+
+END
