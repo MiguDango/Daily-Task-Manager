@@ -1,4 +1,3 @@
-
 """
 Daily Task Manager
 A simple command-line task manager using Python and JSON.
@@ -10,8 +9,18 @@ from pathlib import Path
 
 DATA_FILE = Path(__file__).with_name("tasks.json")
 
+# A tuple is suitable because the menu options are fixed.
+MENU_OPTIONS = (
+    "Add a task",
+    "View tasks",
+    "Mark a task as completed",
+    "Delete a task",
+    "Exit",
+)
+
 
 def load_tasks():
+    """Load saved tasks from the JSON file."""
     if not DATA_FILE.exists():
         return []
 
@@ -25,6 +34,7 @@ def load_tasks():
 
 
 def save_tasks(tasks):
+    """Save the task list to the JSON file."""
     try:
         with DATA_FILE.open("w", encoding="utf-8") as file:
             json.dump(tasks, file, indent=4)
@@ -33,6 +43,7 @@ def save_tasks(tasks):
 
 
 def add_task(tasks):
+    """Ask for task details, validate them, and add a task."""
     title = input("Task title: ").strip()
 
     if not title:
@@ -40,9 +51,7 @@ def add_task(tasks):
         return
 
     description = input("Description: ").strip()
-    due_date = input(
-        "Due date (YYYY-MM-DD, or Enter to skip): "
-    ).strip()
+    due_date = input("Due date (YYYY-MM-DD, or Enter to skip): ").strip()
 
     if due_date:
         try:
@@ -55,7 +64,7 @@ def add_task(tasks):
         "title": title,
         "description": description,
         "due_date": due_date,
-        "completed": False
+        "completed": False,
     }
 
     tasks.append(task)
@@ -64,6 +73,7 @@ def add_task(tasks):
 
 
 def view_tasks(tasks):
+    """Display all tasks and their current status."""
     if not tasks:
         print("There are no tasks yet.")
         return
@@ -80,6 +90,7 @@ def view_tasks(tasks):
 
 
 def get_task_index(tasks, action):
+    """Get and validate a task number; return its zero-based index."""
     if not tasks:
         print(f"There are no tasks to {action}.")
         return None
@@ -98,6 +109,7 @@ def get_task_index(tasks, action):
 
 
 def complete_task(tasks):
+    """Mark the selected task as completed."""
     index = get_task_index(tasks, "complete")
 
     if index is not None:
@@ -107,6 +119,7 @@ def complete_task(tasks):
 
 
 def delete_task(tasks):
+    """Delete the selected task."""
     index = get_task_index(tasks, "delete")
 
     if index is not None:
@@ -116,15 +129,14 @@ def delete_task(tasks):
 
 
 def show_menu():
+    """Display the menu using the fixed MENU_OPTIONS tuple."""
     print("\n===== DAILY TASK MANAGER =====")
-    print("1. Add a task")
-    print("2. View tasks")
-    print("3. Mark a task as completed")
-    print("4. Delete a task")
-    print("5. Exit")
+    for number, option in enumerate(MENU_OPTIONS, start=1):
+        print(f"{number}. {option}")
 
 
 def main():
+    """Run the main menu loop."""
     tasks = load_tasks()
 
     while True:
@@ -133,21 +145,16 @@ def main():
 
         if choice == "1":
             add_task(tasks)
-
         elif choice == "2":
             view_tasks(tasks)
-
         elif choice == "3":
             complete_task(tasks)
-
         elif choice == "4":
             delete_task(tasks)
-
         elif choice == "5":
             save_tasks(tasks)
             print("Tasks saved. Goodbye!")
             break
-
         else:
             print("Invalid choice. Select a number from 1 to 5.")
 
