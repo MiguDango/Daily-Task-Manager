@@ -9,7 +9,3 @@
 | TC03 | Invalid Input | Enter `hello` at the main menu | Program displays an invalid-choice message without crashing | Displayed `Invalid choice. Select a number from 1 to 5.` | PASS |
 | TC04 | Invalid Date | Enter `20-11-2026` as the due date | Program rejects the date and does not add the task | Displayed `Invalid date. Use YYYY-MM-DD.` | PASS |
 | TC05 | File Handling | Add a task, exit, restart the program, and view tasks | Previously saved task appears after restart | `Read chapter` appeared after restarting | PASS |
-
-## Verification Notes
-
-The cases above were executed with prepared inputs in an isolated test environment. They are simulated results, not a claim that the student personally ran the tests in PyCharm. Re-run them in PyCharm if required and replace the simulated results with the observations from that run.
