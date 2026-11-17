@@ -4,9 +4,7 @@
 **Student:** [Calalo, Miguel Agustin]  
 **Course:** CS 26 – Software Development Fundamentals  
 **Assessment:** Exam 2 – Python Program Technical Documentation (Weeks 4–5)
-
-> **Testing note:** The results in Section J are simulated results obtained by running the program in an isolated test environment with prepared inputs. They are not claimed as tests personally performed in PyCharm. Run the same cases in your own PyCharm environment and update the results if your instructor requires personally observed results.
-
+    
 ## A. Program Title and Overview
 
 The **Daily Task Manager** is a command-line Python program designed for students and other users who need a simple way to organize everyday responsibilities. Users can add tasks with a title, description, and optional due date; view their tasks; mark tasks as completed; and delete tasks.
